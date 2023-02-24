@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui">
+
+<h:head>
+    <ui:insert name="head" />
+    <h:outputStylesheet library="css" name="myStyle.css" />
+</h:head>
+
+<h:body  >
+    <b:form>
+        <div class="bg-success header flex-justify-center flex-align-center">
+                <img src="resources/pictures/pizzamaster-logo-s.png" alt="" style="height: 20rem"/>
+        </div>
+        <b:navBar brand="#{mbLogin.connectedClient.CLI_nom} #{mbLogin.connectedClient.CLI_prenom}">
+            <b:navbarLinks pull="right">
+                <b:navLink styleClass="#{mbArch.navLinkStyle('index.xhtml')}" value="Accueil" icon-awesome="home" href="index.xhtml"/>
+                <b:navLink styleClass="#{mbArch.navLinkStyle('space.xhtml')}" value="Mon espace" icon-awesome="user" href="space.xhtml"
+                           rendered="#{mbLogin.isConnected()}" />
+                <b:navLink styleClass="#{mbArch.navLinkStyle('login.xhtml')}" value="Connexion" icon-awesome="key" href="login.xhtml"
+                           rendered="#{!mbLogin.isConnected()}" />
+                <b:navLink styleClass="#{mbArch.navLinkStyle('lieu.xhtml')}" value="LIEU" icon-awesome="location-arrow" href="lieu.xhtml"
+                           />
+                <b:navLink styleClass="#{mbArch.navLinkStyle('site.xhtml')}" value="SITE" icon-awesome="tint" href="site.xhtml"
+                />
+                <b:navCommandLink value="Déconnexion" action="#{mbLogin.disconnect()}" icon-awesome="key"
+                                  rendered="#{mbLogin.isConnected()}" />
+            </b:navbarLinks>
+        </b:navBar>
+    </b:form>
+
+    <b:container>
+        <b:row>
+            <b:column style-class="content">
+                <ui:insert name="content" />
+            </b:column>
+        </b:row>
+    </b:container>
+    <div class="bg-success footer flex-justify-center flex-align-center">
+        <div>PizzaMaster - 2023</div>
+    </div>
+</h:body>
+
+</html>

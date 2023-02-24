@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui">
+
+
+<ui:composition template="arch.xhtml">
+    <ui:define name="head">Lieu</ui:define>
+
+
+    <ui:define name="content">
+        <b:row>
+            <b:column>
+                <h1 style="text-align: center">Lieu</h1>
+                <b:form id="tabLieu" style="background-color:lightblue" horizontal="true" styleClass="some-class">
+                    Gestion des Lieu
+                    <b:dataTable id="dTable" value="#{mbLieu.allLieu}"
+                                 var="expression">
+                        <b:dataTableColumn value="#{expression.LIE_id}" label="id"/>
+                        <b:dataTableColumn value="#{expression.LIE_ville}" label="ville"/>
+                        <b:dataTableColumn value="#{expression.LIE_codePostal}" label="codepostale"/>
+                    </b:dataTable>
+                   <b:well>
+                        <h:form>
+                            <b:row  styleClass="text-center" style="display:flex;align-items: flex-end">
+                                <b:inputText id="LIE_ID" value="#{mbLieu.LIE_VILLE}" col-md="2"
+                                             label="id" required="true" style="margin-bottom: 0" />
+                                <b:inputText id="LIE_VILLE" value="#{mbLieu.LIE_VILLE}" col-md="2"
+                                             label="ville" required="true" style="margin-bottom: 0" />
+                                <b:inputText id="LIE_CODEPOSTALE" value="#{mbLieu.LIE_CODEPOSTALE}" col-md="2"
+                                             label="codepostale" required="true" style="margin-bottom: 0" />
+
+                                <b:commandButton  style-class="w-100" col-md="2" value="Ajouter" style="margin-top: 32.5px"
+                                                  action="#{mbLieu.creerLieu()}" />
+                            </b:row>
+                        </h:form>
+                       <h:form>
+                           <b:row  styleClass="text-center" style="display:flex;align-items: flex-end">
+                               <b:inputText id="LIE_ID" value="#{mbLieu.LIE_ID}" col-md="2"
+                                            label="LIE_ID" required="true" style="margin-bottom: 0" />
+                               <b:inputText id="LIE_VILLE" value="#{mbLieu.LIE_VILLE}" col-md="2"
+                                            label="ville" required="true" style="margin-bottom: 0" />
+                               <b:inputText id="LIE_CODEPOSTALE" value="#{mbLieu.LIE_CODEPOSTALE}" col-md="2"
+                                            label="codepostale" required="true" style="margin-bottom: 0" />
+
+                               <b:commandButton  style-class="w-100" col-md="2" value="Modifier" style="margin-top: 32.5px"
+                                                 action="#{mbLieu.modifylieu()}" />
+                           </b:row>
+                       </h:form>
+                       <h:form>
+                           <b:row  styleClass="text-center" style="display:flex;align-items: flex-end">
+
+                               <b:inputText id="LIE_VILLE" value="#{mbLieu.LIE_VILLE}" col-md="2"
+                                            label="ville" required="true" style="margin-bottom: 0" />
+                               <b:commandButton  style-class="w-100" col-md="2" value="supprimer" style="margin-top: 32.5px"
+                                                 action="#{mbLieu.deletelieu()}" />
+                           </b:row>
+                       </h:form>
+                    </b:well>
+                </b:form>
+
+                <b:row style="position: center">
+                    <h1 >Site</h1>
+                </b:row>
+
+                <b:form id="tabSite" style="background-color:lightblue" horizontal="true" styleClass="some-class">
+                    Gestion des Site
+                    <b:dataTable id="dTable" value="#{mbSite.allSite}"
+                                 var="expection">
+                        <b:dataTableColumn value="#{expection.LIE_id}" label="lieu id"/>
+                        <b:dataTableColumn value="#{expection.SIT_id}" label="site id"/>
+                        <b:dataTableColumn value="#{expection.types }" label="type"/>
+                        <b:dataTableColumn value="#{expection.SIT_nom }" label="sit nom"/>
+                        <b:dataTableColumn value="#{expection.SIT_nomRue }" label="site nom rue"/>
+                        <b:dataTableColumn value="#{expection.SIT_nomVoie }" label="site nom voie"/>
+                        <b:dataTableColumn value="#{expection.SIT_telephone }" label="telephone"/>
+                    </b:dataTable>
+                    <b:well>
+                        <h:form>
+                            <b:row  styleClass="text-center" style="display:flex;align-items: flex-end">
+                                <b:inputText id="LIE_ID" value="#{mbSite.LIE_id}" col-md="2"
+                                             label="lieu id" required="true" style="margin-bottom: 0" />
+                                <b:inputText id="TYPES_ID" value="#{mbSite.types}" col-md="2"
+                                             label="TYPES_ID" required="true" style="margin-bottom: 0" />
+                                <b:inputText id="SIT_nom" value="#{mbSite.SIT_nom}" col-md="2"
+                                             label="sit nom" required="true" style="margin-bottom: 0" />
+                                <b:inputText id="SIT_nomRue" value="#{mbSite.SIT_nomRue}" col-md="2"
+                                             label="site nom rue" required="true" style="margin-bottom: 0" />
+                                <b:inputText id="SIT_nomVoie" value="#{mbSite.SIT_nomVoie}" col-md="2"
+                                             label="site nom voie" required="true" style="margin-bottom: 0" />
+                                <b:inputText id="SIT_telephone" value="#{mbSite.SIT_telephone}" col-md="2"
+                                             label="telephone" required="true" style="margin-bottom: 0" />
+                                ²
+                                <b:commandButton  style-class="w-100" col-md="2" value="Ajouter" style="margin-top: 32.5px"
+                                                  action="#{mbSite.creerSite()}" />
+                            </b:row>
+                        </h:form>
+
+                        <h:form>
+                            <b:row  styleClass="text-center" style="display:flex;align-items: flex-end">
+                                <b:inputText id="LIE_ID" value="#{mbSite.LIE_id}" col-md="2"
+                                             label="lieu id" required="true" style="margin-bottom: 0" />
+                                <b:inputText id="TYPES_ID" value="#{mbSite.types}" col-md="2"
+                                             label="TYPES_ID" required="true" style="margin-bottom: 0" />
+                                <b:inputText id="SIT_nom" value="#{mbSite.SIT_nom}" col-md="2"
+                                             label="sit nom" required="true" style="margin-bottom: 0" />
+                                <b:inputText id="SIT_nomRue" value="#{mbSite.SIT_nomRue}" col-md="2"
+                                             label="site nom rue" required="true" style="margin-bottom: 0" />
+                                <b:inputText id="SIT_nomVoie" value="#{mbSite.SIT_nomVoie}" col-md="2"
+                                             label="site nom voie" required="true" style="margin-bottom: 0" />
+                                <b:inputText id="SIT_telephone" value="#{mbSite.SIT_telephone}" col-md="2"
+                                             label="telephone" required="true" style="margin-bottom: 0" />
+                                ²
+                                <b:commandButton  style-class="w-100" col-md="2" value="Modifier" style="margin-top: 32.5px"
+                                                  action="#{mbSite.modifierSite()}" />
+                            </b:row>
+                        </h:form>
+
+                        <h:form>
+                            <b:row  styleClass="text-center" style="display:flex;align-items: flex-end">
+                                <b:inputText id="SIT_ID" value="#{mbSite.LIE_id}" col-md="2"
+                                             label="Site id" required="true" style="margin-bottom: 0" />
+
+                                ²
+                                <b:commandButton  style-class="w-100" col-md="2" value="Supprimer" style="margin-top: 32.5px"
+                                                  action="#{mbSite.deletesite()}" />
+                            </b:row>
+                        </h:form>
+
+                    </b:well>
+                </b:form>
+            </b:column>
+        </b:row>
+    </ui:define>
+
+
+
+</ui:composition>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui" xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+<script type="text/javascript">
+</script>
+<ui:composition template="arch.xhtml">
+    <ui:define name="PizzaMaster">Carte</ui:define>
+
+    <ui:define name="content">
+        <b:row>
+            <b:form>
+                <b:column>
+                    <h1 style="text-align: center">Composition des produits</h1>
+                    <b:column styleClass="col-xs-8 col-sm-6 col-md-12 col-lg-12 col-xs-offset-2 col-sm-offset-3 col-md-offset-0 col-lg-offset-0">
+                        <b:selectOneMenu
+                                id="ddlProduit"
+                                value="#{mbProduit.produitSelectionne}"
+                                label="Selection produit"
+                                update="dTable2">
+                            <f:selectItem itemLabel="-"  itemDisabled="true" noSelectionOption="true"/>
+                            <f:selectItems
+                                    value="#{mbProduit.allProduct}"
+                                    var="produit"
+                                    itemValue="#{produit}"
+                                    itemLabel="#{produit.PROD_intitule}"
+                            />
+                        </b:selectOneMenu>
+                        <b:dataTable id="dTable2" value="#{mbProduit.alpha(mbProduit.produitSelectionne)}"
+                                     var="expression2">
+                            <b:dataTableColumn value="#{(expression2.TYPEI_id == 1) ? 'Fruit et légume' :
+                             (expression2.TYPEI_id == 2) ? 'Herbe, épice et condiment' :
+                             (expression2.TYPEI_id == 3) ? 'Oeufs, fromage et produit laitier' :
+                             (expression2.TYPEI_id == 4) ? 'Pâte' :
+                             (expression2.TYPEI_id == 5) ? 'Poisson et fruit de mer' :
+                             (expression2.TYPEI_id == 6) ? 'Viande et charcuterie' :
+                             'Inconnu'}" label="Ingrédient"/>
+                            <b:dataTableColumn value="#{expression2.ING_intitule}" label="Intitulé"/>
+                            <b:dataTableColumn value="#{(expression2.ING_complementaire == 1) ? 'Oui' : 'Non'}" label="Complémentaire"/>
+                        </b:dataTable>
+                    </b:column>
+                </b:column>
+            </b:form>
+        </b:row>
+    </ui:define>
+</ui:composition>
+</html>
+

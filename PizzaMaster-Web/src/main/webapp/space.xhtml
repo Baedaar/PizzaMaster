@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+>
+
+<ui:composition template="/arch.xhtml">
+
+    <ui:define name="head">
+        <title>Compte</title>
+        <f:metadata>
+            <f:event listener="#{mbLogin.authorise()}" type="preRenderView" />
+        </f:metadata>
+    </ui:define>
+
+    <ui:define name="content">
+        <b:row>
+            <b:column>
+                <b:row>
+                    <b:column>
+                        <h3>Mes adresses :</h3>
+                        <br />
+                        <b:form id="tabProd" style="background-color:lightblue" horizontal="true" styleClass="some-class">
+                            Gestion des adresses
+                            <b:dataTable value="#{mbEspace.allClientAdresses(mbLogin.connectedClient.CLI_id)}"
+                                         var="bebe" styleClass="mt-2rem col-xs-12 col-sm-12 col-md-8 col-lg-9">
+                                <b:dataTableColumn label="Numero de Rue" styleClass="mt-2rem col-xs-12 col-sm-12 col-md-8 col-lg-9">
+                                    <ui:repeat value="#{mbEspace.adressesList}" var="listeAdresse">
+                                        <h:outputText value="#{listeAdresse.ADD_numeroRue}"/>
+                                    </ui:repeat>
+                                </b:dataTableColumn>
+                                <b:dataTableColumn label="Nom de Voie" styleClass="mt-2rem col-xs-12 col-sm-12 col-md-8 col-lg-9">
+                                    <ui:repeat value="#{mbEspace.adressesList}" var="listeAdresse">
+                                        <h:outputText value="#{listeAdresse.ADD_nomVoie}"/>
+                                    </ui:repeat>
+                                </b:dataTableColumn>
+                                <b:dataTableColumn label="Escalier" styleClass="mt-2rem col-xs-12 col-sm-12 col-md-8 col-lg-9">
+                                    <ui:repeat value="#{mbEspace.adressesList}" var="listeAdresse">
+                                        <h:outputText value="#{listeAdresse.ADD_escalier}"/>
+                                    </ui:repeat>
+                                </b:dataTableColumn>
+                                <b:dataTableColumn label="Etage" styleClass="mt-2rem col-xs-12 col-sm-12 col-md-8 col-lg-9">
+                                    <ui:repeat value="#{mbEspace.adressesList}" var="listeAdresse">
+                                        <h:outputText value="#{listeAdresse.ADD_etage}"/>
+                                    </ui:repeat>
+                                </b:dataTableColumn>
+                                <b:dataTableColumn label="Porte" styleClass="mt-2rem col-xs-12 col-sm-12 col-md-8 col-lg-9">
+                                    <ui:repeat value="#{mbEspace.adressesList}" var="listeAdresse">
+                                        <h:outputText value="#{listeAdresse.ADD_porte}"/>
+                                    </ui:repeat>
+                                </b:dataTableColumn>
+                                <b:dataTableColumn label="Ville" styleClass="mt-2rem col-xs-12 col-sm-12 col-md-8 col-lg-9">
+                                    <ui:repeat value="#{mbEspace.adressesList}" var="listeAdresse">
+                                        <h:outputText value="#{listeAdresse.LIE_ville}"/>
+                                    </ui:repeat>
+                                </b:dataTableColumn>
+                                <b:dataTableColumn label="Code Postal" styleClass="mt-2rem col-xs-12 col-sm-12 col-md-8 col-lg-9">
+                                    <ui:repeat value="#{mbEspace.adressesList}" var="listeAdresse">
+                                        <h:outputText value="#{listeAdresse.LIE_codePostal}"/>
+                                    </ui:repeat>
+                                </b:dataTableColumn>
+                            </b:dataTable>
+
+                        </b:form>
+                    </b:column>
+                    <b:column styleClass="col-xs-6 col-sm-6">
+                        <b:form id="idCommandeClient">
+                            <h3>Mes commandes :
+                                <br />
+                                <ui:repeat value="" var="commande">
+                                    <br />
+                                </ui:repeat>
+                            </h3>
+                        </b:form>
+                    </b:column>
+                </b:row>
+            </b:column>
+            <b:column styleClass="mt-2rem col-xs-12 col-sm-12 col-md-8 col-lg-9">
+            </b:column>
+            <b:column styleClass="mt-2rem col-md-offset-4 col-lg-offset-3 col-xs-12 col-sm-12 col-md-8 col-lg-9">
+                <b:form id="newAdressePanel">
+                    <b:panel title="Ajouter une nouvelle adresse" titleClass="text-bold" collapsed="true">
+                        <b:row>
+                            <b:column style-class="col-xs-3 col-md-3">
+                                <h:outputText value="Numero de Rue" />
+                            </b:column>
+                            <b:column  style-class="col-xs-9 col-md-9">
+                                <b:inputText id="newIntWay" placeholder="Veuillez entrer un numero de rue" value="#{mbEspace.ADD_numeroRue}" />
+                            </b:column>
+                            <b:column  style-class="col-xs-9 col-md-9">
+                                <b:inputText id="newtWayName" placeholder="Veuillez entrer un nom de Voie" value="#{mbEspace.ADD_nomVoie}" />
+                            </b:column>
+                            <b:column  style-class="col-xs-9 col-md-9">
+                                <b:inputText id="newWayStairs" placeholder="Veuillez entrer votre escalier" value="#{mbEspace.adresse.ADD_escalier}" />
+                            </b:column>
+                            <b:column  style-class="col-xs-9 col-md-9">
+                                <b:inputText id="newWayFloor" placeholder="Veuillez entrer votre étage" value="#{mbEspace.adresse.ADD_etage}" />
+                            </b:column>
+                            <b:column  style-class="col-xs-9 col-md-9">
+                                <b:inputText id="newWayDoor" placeholder="Veuillez entrer votre numero de porte" value="#{mbEspace.adresse.ADD_porte}" />
+                            </b:column>
+                        </b:row>
+                        <b:row>
+                            <b:column style-class="col-xs-3 col-md-3">
+                                <h:outputText value="Nom de Voie" />
+                            </b:column>
+                            <b:column style-class="col-xs-9 col-md-9">
+                                <!--                                <b:selectOneMenu id="newCatBreed" value=""/>-->
+                                <b:selectOneMenu id="newCityName" value="#{mbEspace.adresse.LIE_ville}">
+                                    <f:selectItem itemLabel="Veuillez selectionner votre ville"
+                                                  itemDisabled="true" noSelectionOption="true"/>
+                                    <f:selectItems
+                                            value="#{mbEspace.displayVille()}"
+                                            var="ville"
+                                            itemValue="#{ville}"
+                                            itemLabel="#{ville}"
+                                    />
+                                </b:selectOneMenu>
+                            </b:column>
+                        </b:row>
+                        <b:row>
+                            <b:column style-class="p-1rem col-xs-offset-4 col-xs-4 col-md-4">
+                                <b:commandButton style-class="w-100" value="Enregistrer l'adresse" ajax="true"
+                                                 action="#{mbEspace.enregistrerAdresse()}" update="newAdressePanel"/>
+                            </b:column>
+                        </b:row>
+                        <b:row>
+                            <b:column>
+                                <b:message for="newCatName" />
+                                <b:message for="newCatBreed" />
+                                <b:message for="newCatBirthDate" />
+                            </b:column>
+                        </b:row>
+                    </b:panel>
+                </b:form>
+            </b:column>
+        </b:row>
+    </ui:define>
+
+</ui:composition>
+</html>

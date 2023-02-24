@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui" xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+
+<ui:composition template="arch.xhtml">
+    <ui:define name="PizzaMaster">Carte</ui:define>
+
+
+    <ui:define name="content">
+        <b:row>
+            <b:column>
+                <h1 style="text-align: center">Ingredients</h1>
+                <b:form id="tabProd" style="background-color:lightblue" horizontal="true" styleClass="some-class">
+                    Gestion des ingrédients
+                    <b:dataTable id="dTable" value="#{mbIngredient.allIngredients}"
+                                 var="produit">
+                        <b:dataTableColumn value="#{(produit.TYPEI_id == 1) ? 'Fruit et légume' :
+                             (produit.TYPEI_id == 2) ? 'Herbe, épice et condiment' :
+                             (produit.TYPEI_id == 3) ? 'Oeufs, fromage et produit laitier' :
+                             (produit.TYPEI_id == 4) ? 'Pâte' :
+                             (produit.TYPEI_id == 5) ? 'Poisson et fruit de mer' :
+                             (produit.TYPEI_id == 6) ? 'Viande et charcuterie' :
+                             'Inconnu'}" label="TypeTxt"/>
+                        <b:dataTableColumn value="#{produit.ING_intitule}" label="Intitulé"/>
+                        <b:dataTableColumn value="#{(produit.ING_complementaire == 1) ? 'Oui' : 'Non'}" label="Complémentaire"/>
+                    </b:dataTable>
+                    <b:well>
+                        <h:form>
+                            <b:row  styleClass="text-center" style="display:flex;align-items: flex-end">
+                                <b:selectOneMenu   value="#{mbIngredient.TYPEI_id}" colMd="2" required="true" label="Type ingrédient:" labelColMd="2"
+                                                 select2="true" style="margin-bottom: 0">
+                                    <f:selectItem itemLabel="(Selection type)" itemValue="" />
+                                    <f:selectItem itemLabel="Fruit et légume" itemValue="1" />
+                                    <f:selectItem itemLabel="Herbe, épice et condiment" itemValue="2" />
+                                    <f:selectItem itemLabel="Oeufs, fromage et produit laitier" itemValue="3" />
+                                    <f:selectItem itemLabel="Pâte" itemValue="4" />
+                                    <f:selectItem itemLabel="Poisson et fruit de mer" itemValue="5" />
+                                    <f:selectItem itemLabel="Viande et charcuterie" itemValue="6" />
+                                </b:selectOneMenu>
+                                <b:inputText id="intitule" value="#{mbIngredient.ING_intitule}" col-md="2"
+                                             label="Intitulé" required="true" style="margin-bottom: 0" />
+                                <b:panelGrid size="xs" columns="2" colMd="2">
+                                    <b:radiobutton value="#{mbIngredient.ING_complementaire}" itemLabel="Oui" itemValue="1" required="true"/>
+                                    <b:radiobutton value="#{mbIngredient.ING_complementaire}" itemLabel="Non" itemValue="0" />
+                                </b:panelGrid>
+                                <b:commandButton  style-class="w-100" col-md="2" value="Ajouter" style="margin-top: 32.5px"
+                                                  action="#{mbIngredient.creerIng()}" />
+                            </b:row>
+                        </h:form>
+                    </b:well>
+                </b:form>
+            </b:column>
+        </b:row>
+    </ui:define>
+</ui:composition>
+</html>

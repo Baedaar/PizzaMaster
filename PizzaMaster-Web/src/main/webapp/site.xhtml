@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui">
+
+
+<ui:composition template="arch.xhtml">
+    <ui:define name="PizzaMaster">site</ui:define>
+    <ui:define name="content">
+        <b:form id="newsitepanel">
+
+            <b:panel title="Créer un nouveau site" titleClass="text-bold" collapsed="true" >
+
+            <b:row>
+
+                <b:column style-class="col-xs-3 col-md-3">
+
+                    <h:outputText value="site nom" />
+
+                </b:column>
+
+                <b:column  style-class="col-xs-9 col-md-9">
+
+                    <b:inputText id="newsiteName" placeholder="Veuillez entrer le nom de site" value="#{mbSite.newSiteName}" />
+
+                </b:column>
+
+            </b:row>
+                <b:row>
+
+                    <b:column style-class="col-xs-3 col-md-3">
+
+                        <h:outputText value="numero de rue" />
+
+                    </b:column>
+
+                    <b:column  style-class="col-xs-9 col-md-9">
+
+                        <b:inputText id="newsiteNumberderue" placeholder="Veuillez entrer le numero de rue" value="#{mbSite.newSiteNumeroRue}" />
+
+                    </b:column>
+
+                </b:row>
+                <b:row>
+
+                    <b:column style-class="col-xs-3 col-md-3">
+
+                        <h:outputText value="nom de voie" />
+
+                    </b:column>
+
+                    <b:column  style-class="col-xs-9 col-md-9">
+
+                        <b:inputText id="newsitestreet" placeholder="Veuillez entrer le nom de voie" value="#{mbSite.newSiteNomVoie}" />
+
+                    </b:column>
+                </b:row>
+                <b:row>
+
+                    <b:column style-class="col-xs-3 col-md-3">
+
+                        <h:outputText value="site telephone" />
+
+                    </b:column>
+
+                    <b:column  style-class="col-xs-9 col-md-9">
+
+                        <b:inputText id="sitetelephone" placeholder="Veuillez entrer le telephone de site" value="#{mbSite.newSiteTelephone}" />
+
+                    </b:column>
+                </b:row>
+                <b:row>
+                    <b:column style-class="col-xs-3 col-md-3">
+
+                        <h:outputText value="Lieu de Site" />
+
+                    </b:column>
+                    <b:column style-class="col-xs-9 col-md-9">
+                        <b:selectOneMenu id="newlieuid" value="#{mbSite.newSitelieu}">
+
+                            <f:selectItem itemLabel="Veuillez sélectionner une lieu"
+
+                                          itemDisabled="true" noSelectionOption="true"/>
+
+                            <f:selectItems
+
+                                    value="#{mbSite.siteLieu}"
+
+                                    var="lieu"
+
+                                    itemValue="#{lieu}"
+
+                                    itemLabel="#{lieu}"
+
+                            />
+
+                        </b:selectOneMenu>
+
+                    </b:column>
+
+                </b:row>
+                <b:row>
+
+                    <b:column style-class="col-xs-3 col-md-3">
+
+                        <h:outputText value="type de site" />
+
+                    </b:column>
+
+                    <b:column style-class="col-xs-9 col-md-9">
+                        <b:selectOneMenu id="newtypeid" value="#{mbSite.newType}">
+                            <f:selectItem itemLabel="Veuillez sélectionner une lieu"
+                                          itemDisabled="true" noSelectionOption="true"/>
+                            <f:selectItems
+                                    value="#{mbSite.newtypes}"
+                                    var="Type"
+                                    itemValue="#{Type}"
+                                    itemLabel="#{Type}"
+                            />
+                        </b:selectOneMenu>
+                    </b:column>
+                </b:row>
+
+                <b:row>
+
+                    <b:column style-class="p-1rem col-xs-offset-4 col-xs-4 col-md-4">
+
+                        <b:commandButton style-class="w-100" value="Créer le site" ajax="true">
+
+                                   <!--     action="#{mbSite.insertSite()} -->
+
+                        </b:commandButton>
+
+                    </b:column>
+
+                </b:row>
+                <b:row>
+
+                    <b:column>
+
+                        <b:message for="newsiteName" />
+
+                        <b:message for="newsiteNumberderue" />
+
+                        <b:message for="newsitestreet" />
+
+                        <b:message for="sitetelephone" />
+
+                        <b:message for="newlieuid" />
+
+                        <b:message for="newsitetype" />
+
+                    </b:column>
+
+                </b:row>
+
+
+
+            </b:panel>
+        </b:form>
+    </ui:define>
+
+
+
+</ui:composition>
+</html>

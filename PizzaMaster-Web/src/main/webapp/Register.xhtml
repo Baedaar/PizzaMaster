@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui">
+
+<ui:composition template="/arch.xhtml">
+
+    <ui:define name="head">Creation Compte</ui:define>
+    <ui:define name="content">
+        <b:form id="newClientPanel">
+            <b:panel title="Inscrire un nouveau Client" titleClass="text-bold" collapsed="true">
+                <b:row>
+                    <b:column style-class="col-xs-3 col-md-3">
+                        <h:outputText value="Nom" />
+                    </b:column>
+                    <b:column  style-class="col-xs-9 col-md-9">
+                        <b:inputText id="newClientName" placeholder="Veuillez entrer votre nom" value="#{mbRegister.newCLI_nom}" />
+                    </b:column>
+                </b:row>
+                <b:row>
+                    <b:column style-class="col-xs-3 col-md-3">
+                        <h:outputText value="Prénom" />
+                    </b:column>
+                    <b:column  style-class="col-xs-9 col-md-9">
+                        <b:inputText id="newClientPrenom" placeholder="Veuillez entrer votre Prenom" value="#{mbRegister.newCLI_prenom}" />
+                    </b:column>
+                </b:row>
+                <b:row>
+                    <b:column style-class="col-xs-3 col-md-3">
+                        <h:outputText value="email" />
+                    </b:column>
+                    <b:column  style-class="col-xs-9 col-md-9">
+                        <b:inputText id="newClientEmail" placeholder="Veuillez entrer votre email" value="#{mbRegister.newCLI_email}" />
+                    </b:column>
+                </b:row>
+                <b:row>
+                    <b:column style-class="col-xs-3 col-md-3">
+                        <h:outputText value="Mot de Passe" />
+                    </b:column>
+                    <b:column  style-class="col-xs-9 col-md-9">
+                        <b:inputSecret id="newClientPassword" placeholder="Veuillez entrer votre Mot de Passe" value="#{mbRegister.newCLI_MotDePasse}" />
+                    </b:column>
+                </b:row>
+                <b:row>
+                    <b:column style-class="col-xs-3 col-md-3">
+                        <h:outputText value="Genre" />
+                    </b:column>
+                    <b:column style-class="col-xs-9 col-md-9">
+                        <b:selectOneMenu id="newClientGenre" value="#{mbRegister.newGenre}">
+                            <f:selectItem itemLabel="Veuillez sélectionner un genre"
+                                          itemDisabled="true" noSelectionOption="true"/>
+                            <f:selectItems
+                                    value="#{mbRegister.displayGenre()}"
+                                    var="genre"
+                                    itemValue="#{genre}"
+                                    itemLabel="#{genre}"
+                            />
+                        </b:selectOneMenu>
+                    </b:column>
+                </b:row>
+                <b:row>
+                    <b:column style-class="col-xs-3 col-md-3">
+                        <h:outputText value="Date de Naissance" />
+                    </b:column>
+                    <b:column style-class="col-xs-9 col-md-9">
+                        <b:datepicker id="newClientBirthDate" placeholder="Veuillez entrer une date de naissance" value="#{mbRegister.newClI_dateDeNaissance}" />
+                    </b:column>
+                </b:row>
+                <b:row>
+                    <b:column style-class="p-1rem col-xs-offset-4 col-xs-4 col-md-4">
+                        <b:commandButton style-class="w-100" value="S'inscrire"
+                                         action="#{mbRegister.insertClient()}"
+                        >
+                        </b:commandButton>
+                    </b:column>
+                </b:row>
+                <b:row>
+                    <b:column>
+                        <b:message for="newCatName" />
+                        <b:message for="newCatBreed" />
+                        <b:message for="newCatBirthDate" />
+                    </b:column>
+                </b:row>
+            </b:panel>
+        </b:form>
+    </ui:define>
+
+
+
+
+
+
+</ui:composition>
+</html>
